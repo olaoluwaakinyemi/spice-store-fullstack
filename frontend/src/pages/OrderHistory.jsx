@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../../config";
 
 export default function OrderHistory() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function OrderHistory() {
     }
 
     axios
-      .get("http://localhost:5001/orders/my", {
+      .get(`${API_URL}/orders/my`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {

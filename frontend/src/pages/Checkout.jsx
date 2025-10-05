@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
+import { API_URL } from "../../config";
 import {
   Elements,
   CardElement,
@@ -34,12 +35,9 @@ const CheckoutForm = () => {
 
     try {
       // 1. Create a payment intent on backend
-      const res = await axios.post(
-        "http://localhost:5001/payment/create-payment-intent",
-        {
-          amount: totalAmount * 100, // amount in cents
-        }
-      );
+      const res = await axios.post(`${API_URL}/payment/create-payment-intent`, {
+        amount: totalAmount * 100, // amount in cents
+      });
 
       const clientSecret = res.data.clientSecret;
 

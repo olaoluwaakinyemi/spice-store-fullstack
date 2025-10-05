@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../../config";
 
 const EditSpiceForm = () => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const EditSpiceForm = () => {
   // Fetch spice data
   useEffect(() => {
     axios
-      .get(`http://localhost:5001/spices/${id}`)
+      .get(`${API_URL}/spices/${id}`)
       .then((res) => {
         const { name, price, description, imageUrl } = res.data;
         setFormData({ name, price, description });
@@ -53,7 +54,7 @@ const EditSpiceForm = () => {
         data.append("image", imageFile); // only send if a new file is selected
       }
 
-      await axios.put(`http://localhost:5001/spices/${id}`, data, {
+      await axios.put(`${API_URL}/spices/${id}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,

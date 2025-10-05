@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../../config";
 
 function AdminSpiceCard({ spice, onDelete }) {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ function AdminSpiceCard({ spice, onDelete }) {
     if (!window.confirm("Are you sure you want to delete this spice?")) return;
 
     try {
-      await axios.delete(`http://localhost:5001/spices/${spice._id}`, {
+      await axios.delete(`${API_URL}/spices/${spice._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       onDelete(spice._id);

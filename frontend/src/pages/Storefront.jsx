@@ -3,7 +3,7 @@ import SpiceCard from "../components/SpiceCard";
 import { CartContext } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
-
+import { API_URL } from "../../config";
 const Storefront = () => {
   const [spices, setSpices] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,7 +14,7 @@ const Storefront = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5001/spices")
+      .get(`${API_URL}/spices`)
       .then((res) => {
         setSpices(res.data);
         setLoading(false);

@@ -5,6 +5,7 @@ import { auth, googleProvider, facebookProvider } from "../firebaseConfig";
 import { signInWithPopup } from "firebase/auth";
 import { FaGoogle, FaFacebookF } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
+import { API_URL } from "../../config";
 
 export default function Register() {
   const { login } = useAuth();
@@ -18,7 +19,7 @@ export default function Register() {
     e.preventDefault();
     setError("");
     try {
-      const res = await axios.post("http://localhost:5001/auth/register", {
+      const res = await axios.post(`${API_URL}/auth/register`, {
         name,
         email,
         password,
@@ -44,7 +45,7 @@ export default function Register() {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
-      const res = await axios.post("http://localhost:5001/auth/oauth", {
+      const res = await axios.post(`${API_URL}/auth/oauth`, {
         name: user.displayName,
         email: user.email,
         provider: type,

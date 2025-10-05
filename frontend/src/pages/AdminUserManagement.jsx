@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
+import { API_URL } from "../../config";
 
 const AdminUserManagement = () => {
   const { token } = useAuth();
@@ -14,7 +15,7 @@ const AdminUserManagement = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:5001/auth/users", {
+      const res = await axios.get(`${API_URL}/auth/users`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(res.data);
@@ -32,7 +33,7 @@ const AdminUserManagement = () => {
 
     try {
       await axios.put(
-        `http://localhost:5001/auth/users/${userId}/role`,
+        `${API_URL}/auth/users/${userId}/role`,
         { role: newRole },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -52,7 +53,7 @@ const AdminUserManagement = () => {
     setSuccess("");
 
     try {
-      await axios.delete(`http://localhost:5001/auth/users/${userId}`, {
+      await axios.delete(`${API_URL}/auth/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -78,11 +79,9 @@ const AdminUserManagement = () => {
     setSuccess("");
 
     try {
-      await axios.post(
-        "http://localhost:5001/auth/admin/create-user",
-        newUser,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await axios.post(`${API_URL}/auth/admin/create-user`, newUser, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       setSuccess("User created successfully");
       setNewUser({ name: "", email: "", password: "", role: "user" });

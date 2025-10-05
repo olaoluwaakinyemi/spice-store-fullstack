@@ -154,6 +154,16 @@ router.put("/me", authMiddleware, async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+// delete /auth/me (delete profile)
+router.delete("/me", authMiddleware, async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.user.id);
+    res.json({ message: "Account deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 // GET /auth/users - Get all users (admin only)
 router.get("/users", authMiddleware, async (req, res) => {
   try {

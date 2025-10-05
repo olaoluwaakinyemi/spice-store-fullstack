@@ -8,7 +8,16 @@ const spicesRoutes = require("./routes/spices");
 const authRoutes = require("./routes/auth"); // ✅ Import auth.js
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:3000",
+      "https://your-frontend-vercel-url.vercel.app", // Add your Vercel URL when deployed
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // ✅ Use the routes

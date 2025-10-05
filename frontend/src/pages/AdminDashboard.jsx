@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AdminSpiceCard from "../components/AdminSpiceCard";
 import { useNavigate } from "react-router-dom";
 import SpiceForm from "../components/SpiceForm";
+import { API_URL } from "../../config";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const AdminDashboard = () => {
   const [showAddForm, setShowAddForm] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5001/spices")
+    fetch(`${API_URL}/spices`)
       .then((res) => res.json())
       .then((data) => setSpices(data))
       .catch((err) => console.error("Error fetching spices:", err));
@@ -23,7 +24,7 @@ const AdminDashboard = () => {
     if (!window.confirm("Are you sure you want to delete this spice?")) return;
 
     try {
-      await fetch(`http://localhost:5001/spices/${id}`, {
+      await fetch(`${API_URL}/spices/${id}`, {
         method: "DELETE",
       });
       setSpices(spices.filter((s) => s._id !== id));
