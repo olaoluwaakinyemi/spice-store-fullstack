@@ -13,7 +13,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:3000",
-      "https://your-frontend-vercel-url.vercel.app", // Add your Vercel URL when deployed
+      "https://spice-store-fullstack.vercel.app/", // Add your Vercel URL when deployed
     ],
     credentials: true,
   })
