@@ -10,11 +10,17 @@ const authRoutes = require("./routes/auth"); // ✅ Import auth.js
 const app = express();
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:3000",
-      "https://spice-store-fullstack.vercel.app/", // Add your Vercel URL when deployed
-    ],
+    origin: function (origin, callback) {
+      // Allow requests with no origin (mobile apps, curl, etc)
+      if (!origin) return callback(null, true);
+
+      // Allow localhost and vercel domains
+      if (origin.includes("localhost") || origin.includes("vercel.app")) {
+        return callback(null, true);
+      }
+
+      callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   })
 );
