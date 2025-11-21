@@ -40,19 +40,21 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Header Section */}
+      {/* Header Section - Mobile Optimized */}
       <div className="bg-white shadow-md border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
                 Admin Dashboard
               </h1>
-              <p className="text-gray-600 mt-1">Manage your spice inventory</p>
+              <p className="text-gray-600 mt-1 text-sm sm:text-base">
+                Manage your spice inventory
+              </p>
             </div>
             <button
               onClick={() => setShowAddForm(!showAddForm)}
-              className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all shadow-lg hover:shadow-xl font-medium flex items-center space-x-2"
+              className="w-full sm:w-auto px-4 sm:px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all shadow-lg hover:shadow-xl font-medium flex items-center justify-center space-x-2 min-h-[44px]"
             >
               <svg
                 className="w-5 h-5"
@@ -64,7 +66,7 @@ const AdminDashboard = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M12 4v16m8-8H4"
+                  d={showAddForm ? "M6 18L18 6M6 6l12 12" : "M12 4v16m8-8H4"}
                 />
               </svg>
               <span>{showAddForm ? "Cancel" : "Add New Spice"}</span>
@@ -73,22 +75,22 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-orange-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        {/* Stats Cards - Mobile Optimized */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 border-l-4 border-orange-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 text-sm font-medium">
+                <p className="text-gray-600 text-xs sm:text-sm font-medium uppercase tracking-wider">
                   Total Spices
                 </p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
                   {spices.length}
                 </p>
               </div>
-              <div className="bg-orange-100 rounded-full p-3">
+              <div className="bg-orange-100 rounded-full p-2 sm:p-3">
                 <svg
-                  className="w-8 h-8 text-orange-500"
+                  className="w-6 h-6 sm:w-8 sm:h-8 text-orange-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -104,17 +106,19 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 border-l-4 border-green-500">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 text-sm font-medium">In Stock</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">
+                <p className="text-gray-600 text-xs sm:text-sm font-medium uppercase tracking-wider">
+                  In Stock
+                </p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
                   {spices.filter((s) => s.stock > 0).length}
                 </p>
               </div>
-              <div className="bg-green-100 rounded-full p-3">
+              <div className="bg-green-100 rounded-full p-2 sm:p-3">
                 <svg
-                  className="w-8 h-8 text-green-500"
+                  className="w-6 h-6 sm:w-8 sm:h-8 text-green-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -130,17 +134,19 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 border-l-4 border-red-500 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 text-sm font-medium">Low Stock</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">
+                <p className="text-gray-600 text-xs sm:text-sm font-medium uppercase tracking-wider">
+                  Low Stock
+                </p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">
                   {spices.filter((s) => s.stock > 0 && s.stock < 10).length}
                 </p>
               </div>
-              <div className="bg-red-100 rounded-full p-3">
+              <div className="bg-red-100 rounded-full p-2 sm:p-3">
                 <svg
-                  className="w-8 h-8 text-red-500"
+                  className="w-6 h-6 sm:w-8 sm:h-8 text-red-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -157,23 +163,25 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Add Spice Form */}
+        {/* Add Spice Form - Mobile Optimized */}
         {showAddForm && (
-          <div className="bg-white rounded-lg shadow-lg p-6 mb-8 border border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-6 sm:mb-8 border border-gray-200">
+            <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">
               Add New Spice
             </h2>
             <SpiceForm onSpiceAdded={handleSpiceAdded} />
           </div>
         )}
 
-        {/* Spices Grid */}
+        {/* Spices Grid - Mobile Optimized */}
         <div>
-          <h2 className="text-xl font-bold text-gray-900 mb-4">All Spices</h2>
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">
+            All Spices
+          </h2>
           {spices.length === 0 ? (
-            <div className="bg-white rounded-lg shadow-md p-12 text-center">
+            <div className="bg-white rounded-lg shadow-md p-8 sm:p-12 text-center">
               <svg
-                className="w-16 h-16 text-gray-400 mx-auto mb-4"
+                className="w-12 h-12 sm:w-16 sm:h-16 text-gray-400 mx-auto mb-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -185,13 +193,15 @@ const AdminDashboard = () => {
                   d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
                 />
               </svg>
-              <p className="text-gray-600 text-lg">No spices yet</p>
+              <p className="text-gray-600 text-base sm:text-lg">
+                No spices yet
+              </p>
               <p className="text-gray-500 text-sm mt-1">
                 Click "Add New Spice" to get started
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {spices.map((spice) => (
                 <AdminSpiceCard
                   key={spice._id}

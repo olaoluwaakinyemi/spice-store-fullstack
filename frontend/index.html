@@ -2,20 +2,160 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CRITICAL: Enhanced viewport for mobile optimization -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+
+    <!-- SEO Meta Tags -->
     <meta
       name="description"
-      content="Buy fresh spices like curry and thyme online."
+      content="Buy fresh spices like curry and thyme online. Premium quality spices delivered to your door. Shop our collection of exotic and everyday spices."
     />
     <meta
       name="keywords"
-      content="spices, curry, thyme, eCommerce, buy online"
+      content="spices, curry, thyme, eCommerce, buy online, premium spices, exotic spices, spice store"
     />
     <meta name="author" content="Olaoluwa Akinyemi" />
-    <title>Spice Store</title>
+
+    <!-- Mobile-Specific Meta Tags -->
+    <meta name="theme-color" content="#ea580c" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="SpiceStore" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="apple-touch-icon" href="/vite.svg" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Spice Store - Premium Spices Online" />
+    <meta
+      property="og:description"
+      content="Buy fresh spices like curry and thyme online. Premium quality spices delivered to your door."
+    />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Spice Store - Premium Spices Online" />
+    <meta
+      name="twitter:description"
+      content="Buy fresh spices like curry and thyme online."
+    />
+
+    <title>Spice Store - Premium Spices Online</title>
+
+    <style>
+      /* Mobile Optimization Styles */
+
+      /* Prevent text size adjustment on orientation change (iOS) */
+      html {
+        -webkit-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      /* Smooth scrolling for better UX */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Prevent horizontal scroll and set defaults */
+      body {
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Better tap highlighting on mobile devices */
+      * {
+        -webkit-tap-highlight-color: rgba(234, 88, 12, 0.2);
+        -webkit-touch-callout: none; /* Disable callout on long-press (iOS) */
+      }
+
+      /* Prevent selection where it's not needed */
+      button,
+      a {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      /* Allow selection in inputs and text areas */
+      input,
+      textarea {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+      }
+
+      /* Loading spinner for initial load */
+      #root:empty::before {
+        content: "";
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        margin: -25px 0 0 -25px;
+        border: 4px solid #f3f4f6;
+        border-top-color: #ea580c;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Ensure images don't overflow on mobile */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Better focus styles for accessibility */
+      *:focus-visible {
+        outline: 2px solid #ea580c;
+        outline-offset: 2px;
+      }
+
+      /* Safe area insets for notched devices (iPhone X+) */
+      @supports (padding: max(0px)) {
+        body {
+          padding-left: max(0px, env(safe-area-inset-left));
+          padding-right: max(0px, env(safe-area-inset-right));
+          padding-bottom: max(0px, env(safe-area-inset-bottom));
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Optional: Add a noscript message for users with JS disabled -->
+    <noscript>
+      <div style="padding: 20px; text-align: center; font-family: sans-serif">
+        <h1>JavaScript Required</h1>
+        <p>
+          This application requires JavaScript to be enabled. Please enable
+          JavaScript in your browser settings.
+        </p>
+      </div>
+    </noscript>
   </body>
 </html>

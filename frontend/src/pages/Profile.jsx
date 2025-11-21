@@ -96,20 +96,26 @@ export default function Profile() {
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50 py-6 sm:py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">My Profile</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">
+          My Profile
+        </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Profile Info Card */}
-          <div className="md:col-span-1">
-            <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
               <div className="flex flex-col items-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">
                   {user.name?.charAt(0).toUpperCase() || "U"}
                 </div>
-                <h2 className="text-xl font-bold text-gray-900">{user.name}</h2>
-                <p className="text-gray-600 text-sm">{user.email}</p>
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900 text-center">
+                  {user.name}
+                </h2>
+                <p className="text-gray-600 text-sm text-center break-all px-2">
+                  {user.email}
+                </p>
                 <span
                   className={`mt-3 px-3 py-1 rounded-full text-xs font-semibold ${
                     user.role === "admin"
@@ -121,7 +127,7 @@ export default function Profile() {
                 </span>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-200">
                 <div className="space-y-3">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Member since</span>
@@ -131,7 +137,7 @@ export default function Profile() {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Login method</span>
-                    <span className="font-medium text-gray-900">
+                    <span className="font-medium text-gray-900 capitalize">
                       {user.provider || "Email"}
                     </span>
                   </div>
@@ -141,20 +147,20 @@ export default function Profile() {
           </div>
 
           {/* Update Profile Form */}
-          <div className="md:col-span-2 space-y-6">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-6">
+          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">
                 Update Profile
               </h2>
 
               {msg && (
-                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4 text-sm">
                   {msg}
                 </div>
               )}
 
               {error && (
-                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 text-sm">
                   {error}
                 </div>
               )}
@@ -168,7 +174,8 @@ export default function Profile() {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-base"
+                    style={{ fontSize: "16px" }}
                     required
                   />
                 </div>
@@ -180,7 +187,8 @@ export default function Profile() {
                   <input
                     type="email"
                     value={user.email}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 cursor-not-allowed"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 cursor-not-allowed text-base"
+                    style={{ fontSize: "16px" }}
                     disabled
                   />
                   <p className="text-xs text-gray-500 mt-1">
@@ -196,7 +204,8 @@ export default function Profile() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-base"
+                    style={{ fontSize: "16px" }}
                     placeholder="Leave blank to keep current password"
                     minLength="6"
                   />
@@ -208,7 +217,7 @@ export default function Profile() {
                 <button
                   type="submit"
                   disabled={updating}
-                  className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 rounded-lg hover:from-orange-600 hover:to-red-600 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 rounded-lg hover:from-orange-600 hover:to-red-600 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
                 >
                   {updating ? "Updating..." : "Update Profile"}
                 </button>
@@ -216,8 +225,8 @@ export default function Profile() {
             </div>
 
             {/* Danger Zone */}
-            <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 border-l-4 border-red-500">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">
                 Danger Zone
               </h2>
               <p className="text-gray-600 text-sm mb-4">
@@ -226,7 +235,7 @@ export default function Profile() {
               </p>
               <button
                 onClick={handleDeleteAccount}
-                className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                className="w-full sm:w-auto px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors min-h-[44px]"
               >
                 Delete Account
               </button>
